@@ -25,18 +25,25 @@ def AI_plays(level, L):
         return AI2(L)
 
 def AI1(L):
+    if L != []:
+        return L[-1]
+    return AI2(L)
+
+def AI2(L):
     possibilities = ['Stone', 'Paper', 'Cisors']
     return possibilities[random.randint(0, 2)]
 
-def AI2(L):
-    if L != []:
-        return L[-1]
-    return AI1(L)
-
 def AI3(L):
-    if L != []:
-        return L[random.randint(0, len(L)-1)]
-    return AI1(L)
+    dict = {"Stone":"Paper", "Paper":"Cisors", "Cisors":"Stone"}
+    if len(L) > 3:
+        return dict[L[random.randint(0, len(L)-1)]]
+    return AI2(L)
+
+    """
+    parmi les précédents jeux de l'adversaire, l'IA en choisit un aléatoirement, puis joue le matériaux gagnant face à ce tirage aléatoire.
+    Donc plus l'adversaire a joué un certain matériaux, plus il y a de chances que l'IA joue le contre de ce matériaux.
+    Sinon du premier au troisieme coup, elle joue aléatoirement (pour récolter les données).
+    """
 
 def compare(player, IA):
     dict = {"StonePaper":False, "StoneCisors":True, "PaperStone":True, "PaperCisors":False, "CisorsStone":False, "CisorsPaper":True}
