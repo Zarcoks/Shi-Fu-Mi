@@ -25,7 +25,7 @@ def AI_plays(level, L):
         return AI2(L)
 
 def AI1(L):
-    possibilities = ['S', 'P', 'C']
+    possibilities = ['Stone', 'Paper', 'Cisors']
     return possibilities[random.randint(0, 2)]
 
 def AI2(L):
@@ -39,8 +39,7 @@ def AI3(L):
     return AI1(L)
 
 def compare(player, IA):
-    dict = {"SP":False, "SC":True, "PS":True, "PC":False, "CS":False, "CP":True}
-
+    dict = {"StonePaper":False, "StoneCisors":True, "PaperStone":True, "PaperCisors":False, "CisorsStone":False, "CisorsPaper":True}
     if IA == player:
         return "draw"
     else:
@@ -63,11 +62,11 @@ def game_start(IA_level):
         time.sleep(1)
         print("Mi !")
         time.sleep(1)
-        print("Choose between 'S', 'P', 'C'")
+        print("Choose between 'Stone', 'Paper', 'Cisors'")
         player_input = input("--> ")
 
-        while not(player_input in ['S', 'P', 'C']):
-            print("... not a good answer...")
+        while not(player_input in ['Stone', 'Paper', 'Cisors']):
+            print("\\. not a good answer ./")
             player_input = input("Try again --> ")
 
         AI_play = AI_plays(int(IA_level), L)
@@ -80,14 +79,13 @@ def game_start(IA_level):
         if res == "draw":
             print("It's draw !")
         elif res == "win":
-            print("You won this round")
+            print("You won this round :(")
             results[0] += 1
         else:
             print("I won ^^")
             results[1] += 1
         time.sleep(1)
         print("\nscore: " + str(results[0]) + " - " + str(results[1]))
-        time.sleep(1)
         round+=1
 
 
